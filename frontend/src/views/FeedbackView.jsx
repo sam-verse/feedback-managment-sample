@@ -95,14 +95,14 @@ const FeedbackView = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Feedback</h1>
-          <p className="text-gray-600 mt-1">Manage and track all feedback submissions</p>
+          <h1 className="text-2xl font-bold text-happyfox-orange">Feedback</h1>
+          <p className="text-happyfox-dark mt-1">Manage and track all feedback submissions</p>
         </div>
         <button
           onClick={() => setShowModal(true)}
-          className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          className="flex items-center px-4 py-2 bg-happyfox-orange text-white rounded-lg shadow hover:bg-happyfox-dark transition"
         >
           <Plus className="h-4 w-4 mr-2" />
           Submit Feedback
@@ -110,23 +110,23 @@ const FeedbackView = () => {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+      <div className="bg-white rounded-xl shadow border border-happyfox-orange p-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div className="relative">
-            <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+            <Search className="absolute left-3 top-3 h-4 w-4 text-happyfox-orange" />
             <input
               type="text"
               placeholder="Search feedback..."
               value={filters.search}
               onChange={(e) => handleFilterChange('search', e.target.value)}
-              className="pl-10 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              className="pl-10 w-full px-3 py-2 border border-happyfox-orange rounded-md focus:outline-none focus:ring-2 focus:ring-happyfox-orange focus:border-happyfox-orange bg-happyfox-light"
             />
           </div>
 
           <select
             value={filters.board_id}
             onChange={(e) => handleFilterChange('board_id', e.target.value)}
-            className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            className="px-3 py-2 border border-happyfox-orange rounded-md focus:outline-none focus:ring-2 focus:ring-happyfox-orange focus:border-happyfox-orange bg-happyfox-light"
           >
             <option value="">All Boards</option>
             {boards.map((board) => (
@@ -139,9 +139,9 @@ const FeedbackView = () => {
           <select
             value={filters.status}
             onChange={(e) => handleFilterChange('status', e.target.value)}
-            className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            className="px-3 py-2 border border-happyfox-orange rounded-md focus:outline-none focus:ring-2 focus:ring-happyfox-orange focus:border-happyfox-orange bg-happyfox-light"
           >
-            <option value="">All Status</option>
+            <option value="">All Statuses</option>
             <option value="open">Open</option>
             <option value="in_progress">In Progress</option>
             <option value="completed">Completed</option>
@@ -151,32 +151,29 @@ const FeedbackView = () => {
           <select
             value={filters.ordering}
             onChange={(e) => handleFilterChange('ordering', e.target.value)}
-            className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            className="px-3 py-2 border border-happyfox-orange rounded-md focus:outline-none focus:ring-2 focus:ring-happyfox-orange focus:border-happyfox-orange bg-happyfox-light"
           >
-            <option value="-created_at">Newest First</option>
-            <option value="created_at">Oldest First</option>
-            <option value="upvotes">Most Upvoted</option>
-            <option value="-upvotes">Least Upvoted</option>
+            <option value="-created_at">Newest</option>
+            <option value="created_at">Oldest</option>
           </select>
         </div>
       </div>
 
-      {/* Feedback List */}
       <div className="space-y-4">
         {feedback.map((item) => (
           <div
             key={item.id}
-            className="bg-white rounded-lg shadow-sm border border-gray-200 p-6"
+            className="bg-white rounded-xl shadow border border-happyfox-orange p-4"
           >
-            <div className="flex items-start justify-between mb-4">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-2">
               <div className="flex-1">
-                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                <h3 className="text-lg font-bold text-happyfox-orange mb-2">
                   {item.title}
                 </h3>
-                <p className="text-gray-600 mb-3">{item.description}</p>
+                <p className="text-happyfox-dark mb-3">{item.description}</p>
 
-                <div className="flex items-center space-x-4 text-sm text-gray-500">
-                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(item.status)}`}>
+                <div className="flex flex-wrap items-center gap-2 text-xs text-happyfox-dark/80">
+                  <span className={`px-2 py-1 rounded-full font-medium border ${getStatusColor(item.status)}`}>
                     {item.status.replace('_', ' ').toUpperCase()}
                   </span>
                   <span>Board: {item.board?.name}</span>
@@ -192,7 +189,7 @@ const FeedbackView = () => {
                     {item.tags_list.map((tag, index) => (
                       <span
                         key={index}
-                        className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full"
+                        className="px-2 py-1 bg-happyfox-light text-happyfox-dark text-xs rounded-full border border-happyfox-orange"
                       >
                         {tag}
                       </span>
@@ -202,14 +199,14 @@ const FeedbackView = () => {
               </div>
             </div>
 
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-4">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+              <div className="flex items-center gap-2">
                 <button
                   onClick={() => handleUpvote(item.id)}
-                  className={`flex items-center space-x-1 px-3 py-1 rounded-md text-sm transition-colors ${
+                  className={`flex items-center gap-1 px-3 py-1 rounded-md text-sm font-semibold transition-colors border ${
                     item.is_upvoted
-                      ? 'bg-red-100 text-red-700 hover:bg-red-200'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      ? 'bg-happyfox-orange text-white border-happyfox-orange hover:bg-happyfox-dark'
+                      : 'bg-happyfox-light text-happyfox-dark border-happyfox-orange hover:bg-happyfox-orange/30'
                   }`}
                 >
                   <Heart
@@ -220,7 +217,7 @@ const FeedbackView = () => {
 
                 <button
                   onClick={() => toggleComments(item.id)}
-                  className="flex items-center space-x-1 px-3 py-1 rounded-md text-sm bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors"
+                  className="flex items-center gap-1 px-3 py-1 rounded-md text-sm bg-happyfox-light text-happyfox-dark border border-happyfox-orange hover:bg-happyfox-orange/30 transition-colors"
                 >
                   <MessageCircle className="h-4 w-4" />
                   <span>{item.comment_count}</span>
@@ -232,39 +229,30 @@ const FeedbackView = () => {
                 </button>
               </div>
 
-              <div className="text-sm text-gray-500">
+              <div className="text-xs text-happyfox-dark/60">
                 Updated {new Date(item.updated_at).toLocaleDateString()}
               </div>
             </div>
 
             {/* Comments Section */}
             {expandedFeedback === item.id && (
-              <div className="mt-6 pt-6 border-t border-gray-200">
+              <div className="mt-6 pt-6 border-t border-happyfox-orange">
                 <CommentSection feedbackId={item.id} />
               </div>
             )}
           </div>
         ))}
-
-        {feedback.length === 0 && (
-          <div className="text-center py-12">
-            <MessageCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">No feedback found</h3>
-            <p className="text-gray-600">Get started by creating your first feedback submission.</p>
-          </div>
-        )}
       </div>
 
-      {/* Create Feedback Modal */}
       <Modal
         isOpen={showModal}
         onClose={() => setShowModal(false)}
-        title="Submit New Feedback"
+        title="Submit Feedback"
       >
         <form onSubmit={handleSubmit}>
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-happyfox-dark mb-1">
                 Title
               </label>
               <input
@@ -273,38 +261,35 @@ const FeedbackView = () => {
                 required
                 value={formData.title}
                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-3 py-2 border border-happyfox-orange rounded-md focus:outline-none focus:ring-2 focus:ring-happyfox-orange focus:border-happyfox-orange bg-happyfox-light"
                 placeholder="Enter feedback title"
               />
             </div>
-
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-happyfox-dark mb-1">
                 Description
               </label>
               <textarea
                 name="description"
-                required
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                rows={4}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                placeholder="Describe your feedback in detail"
+                rows={3}
+                className="w-full px-3 py-2 border border-happyfox-orange rounded-md focus:outline-none focus:ring-2 focus:ring-happyfox-orange focus:border-happyfox-orange bg-happyfox-light"
+                placeholder="Enter feedback description"
               />
             </div>
-
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-happyfox-dark mb-1">
                 Board
               </label>
               <select
                 name="board_id"
-                required
                 value={formData.board_id}
                 onChange={(e) => setFormData({ ...formData, board_id: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-3 py-2 border border-happyfox-orange rounded-md focus:outline-none focus:ring-2 focus:ring-happyfox-orange focus:border-happyfox-orange bg-happyfox-light"
+                required
               >
-                <option value="">Select a board</option>
+                <option value="">Select board</option>
                 {boards.map((board) => (
                   <option key={board.id} value={board.id}>
                     {board.name}
@@ -312,37 +297,26 @@ const FeedbackView = () => {
                 ))}
               </select>
             </div>
-
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Tags (comma-separated)
+              <label className="block text-sm font-medium text-happyfox-dark mb-1">
+                Tags (comma separated)
               </label>
               <input
                 type="text"
                 name="tags"
                 value={formData.tags}
                 onChange={(e) => setFormData({ ...formData, tags: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                placeholder="feature, bug, enhancement"
+                className="w-full px-3 py-2 border border-happyfox-orange rounded-md focus:outline-none focus:ring-2 focus:ring-happyfox-orange focus:border-happyfox-orange bg-happyfox-light"
+                placeholder="e.g. bug, ui, feature"
               />
             </div>
           </div>
-
-          <div className="flex justify-end space-x-3 mt-6">
-            <button
-              type="button"
-              onClick={() => setShowModal(false)}
-              className="px-4 py-2 text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-            >
-              Submit Feedback
-            </button>
-          </div>
+          <button
+            type="submit"
+            className="w-full mt-4 py-2 px-4 rounded-lg text-white font-semibold bg-happyfox-orange hover:bg-happyfox-dark transition"
+          >
+            Submit Feedback
+          </button>
         </form>
       </Modal>
     </div>

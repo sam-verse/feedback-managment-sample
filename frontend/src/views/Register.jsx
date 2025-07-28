@@ -43,20 +43,21 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+    <div className="min-h-screen flex items-center justify-center bg-happyfox-light px-4 py-8">
+      <div className="max-w-md w-full space-y-8 bg-white rounded-2xl shadow-lg p-6">
+        <div className="flex flex-col items-center">
+          <img src="/happyfox-logo.png" alt="HappyFox Logo" className="w-16 h-16 mb-2 animate-fade-in" />
+          <h2 className="mt-2 text-center text-2xl font-bold text-happyfox-orange">
             Create your account
           </h2>
         </div>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+        <form className="mt-6 space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <input
                 name="first_name"
                 type="text"
-                className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                className="block w-full px-4 py-3 border border-happyfox-orange/40 placeholder-happyfox-dark text-happyfox-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-happyfox-orange focus:border-happyfox-orange bg-happyfox-light"
                 placeholder="First Name"
                 value={formData.first_name}
                 onChange={handleChange}
@@ -64,7 +65,7 @@ const Register = () => {
               <input
                 name="last_name"
                 type="text"
-                className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                className="block w-full px-4 py-3 border border-happyfox-orange/40 placeholder-happyfox-dark text-happyfox-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-happyfox-orange focus:border-happyfox-orange bg-happyfox-light"
                 placeholder="Last Name"
                 value={formData.last_name}
                 onChange={handleChange}
@@ -74,7 +75,7 @@ const Register = () => {
               name="username"
               type="text"
               required
-              className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              className="block w-full px-4 py-3 border border-happyfox-orange/40 placeholder-happyfox-dark text-happyfox-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-happyfox-orange focus:border-happyfox-orange bg-happyfox-light"
               placeholder="Username"
               value={formData.username}
               onChange={handleChange}
@@ -83,7 +84,7 @@ const Register = () => {
               name="email"
               type="email"
               required
-              className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              className="block w-full px-4 py-3 border border-happyfox-orange/40 placeholder-happyfox-dark text-happyfox-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-happyfox-orange focus:border-happyfox-orange bg-happyfox-light"
               placeholder="Email"
               value={formData.email}
               onChange={handleChange}
@@ -92,7 +93,7 @@ const Register = () => {
               name="password"
               type="password"
               required
-              className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              className="block w-full px-4 py-3 border border-happyfox-orange/40 placeholder-happyfox-dark text-happyfox-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-happyfox-orange focus:border-happyfox-orange bg-happyfox-light"
               placeholder="Password"
               value={formData.password}
               onChange={handleChange}
@@ -101,27 +102,25 @@ const Register = () => {
               name="password_confirm"
               type="password"
               required
-              className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              className="block w-full px-4 py-3 border border-happyfox-orange/40 placeholder-happyfox-dark text-happyfox-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-happyfox-orange focus:border-happyfox-orange bg-happyfox-light"
               placeholder="Confirm Password"
               value={formData.password_confirm}
               onChange={handleChange}
             />
           </div>
 
-          <div>
-            <button
-              type="submit"
-              disabled={loading}
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
-            >
-              {loading ? 'Creating account...' : 'Sign up'}
-            </button>
-          </div>
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full flex justify-center py-3 px-4 rounded-lg text-white font-semibold bg-happyfox-orange hover:bg-happyfox-dark transition disabled:opacity-60"
+          >
+            {loading ? 'Creating account...' : 'Sign up'}
+          </button>
 
-          <div className="text-center">
+          <div className="text-center mt-2">
             <Link
               to="/login"
-              className="text-blue-600 hover:text-blue-500"
+              className="text-happyfox-orange hover:text-happyfox-dark font-medium"
             >
               Already have an account? Sign in
             </Link>

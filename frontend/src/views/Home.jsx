@@ -107,47 +107,48 @@ const Home = () => {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-gray-900">
-          Welcome back, {user?.first_name || user?.username}!
-        </h1>
-        <p className="text-gray-600 mt-1">
-          Here's what's happening with your feedback today.
-        </p>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div>
+          <h1 className="text-2xl font-bold text-happyfox-orange">
+            Welcome back, {user?.first_name || user?.username}!
+          </h1>
+          <p className="text-happyfox-dark mt-1">
+            Here’s what’s happening with your feedback today.
+          </p>
+        </div>
+        <img src="/happyfox-logo.png" alt="HappyFox Logo" className="w-16 h-16 sm:w-20 sm:h-20 drop-shadow-md mx-auto sm:mx-0 animate-fade-in" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {statCards.map(({ icon: Icon, label, value, color }) => (
           <div
             key={label}
-            className="bg-white rounded-lg shadow-sm border border-gray-200 p-6"
+            className="bg-happyfox-light rounded-xl shadow border border-happyfox-orange p-4 flex items-center gap-4 transition hover:scale-105 hover:shadow-lg"
           >
-            <div className="flex items-center">
-              <div className={`p-2 rounded-lg bg-${color}-100`}>
-                <Icon className={`h-6 w-6 text-${color}-600`} />
-              </div>
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">{label}</p>
-                <p className="text-2xl font-semibold text-gray-900">{value}</p>
-              </div>
+            <div className="p-2 rounded-lg bg-happyfox-orange/20">
+              <Icon className="h-6 w-6 text-happyfox-orange" />
+            </div>
+            <div>
+              <p className="text-xs font-medium text-happyfox-dark">{label}</p>
+              <p className="text-xl font-bold text-happyfox-orange">{value}</p>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h3 className="text-lg font-medium text-gray-900 mb-4">Recent Activity</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div className="bg-white rounded-xl shadow border border-happyfox-orange p-4">
+          <h3 className="text-lg font-semibold text-happyfox-orange mb-4">Recent Activity</h3>
           <div className="space-y-4">
             {stats.recent_feedback?.length > 0 ? (
               stats.recent_feedback.slice(0, 5).map((feedback) => (
                 <div key={feedback.id} className="flex items-start space-x-3">
                   <div className={`flex-shrink-0 w-2 h-2 ${getStatusColor(feedback.status)} rounded-full mt-2`}></div>
                   <div className="flex-1">
-                    <p className="text-sm text-gray-900">
+                    <p className="text-sm text-happyfox-dark">
                       New feedback: "{feedback.title.length > 40 ? feedback.title.substring(0, 40) + '...' : feedback.title}"
                     </p>
-                    <div className="flex items-center space-x-2 text-xs text-gray-500 mt-1">
+                    <div className="flex items-center space-x-2 text-xs text-happyfox-orange mt-1">
                       <span>by {feedback.created_by?.username}</span>
                       <span>•</span>
                       <span>{feedback.board?.name}</span>
@@ -158,58 +159,33 @@ const Home = () => {
                 </div>
               ))
             ) : (
-              <div className="text-center py-8 text-gray-500">
-                <MessageSquare className="h-12 w-12 mx-auto mb-4 text-gray-300" />
+              <div className="text-center py-8 text-happyfox-dark/60">
+                <MessageSquare className="h-12 w-12 mx-auto mb-4 text-happyfox-orange/30" />
                 <p>No recent activity</p>
               </div>
             )}
           </div>
         </div>
-
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h3 className="text-lg font-medium text-gray-900 mb-4">Quick Actions</h3>
-          <div className="space-y-3">
-            {user?.role === 'admin' && (
-              <button
-                onClick={() => handleQuickAction('board')}
-                className="w-full text-left px-4 py-3 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
-              >
-                <div className="flex items-center">
-                  <Folder className="h-5 w-5 text-blue-600 mr-3" />
-                  <div>
-                    <div className="font-medium text-blue-900">Create New Board</div>
-                    <div className="text-sm text-blue-700">Organize feedback by project or team</div>
-                  </div>
-                </div>
-              </button>
-            )}
-
-            <button
-              onClick={() => handleQuickAction('feedback')}
-              className="w-full text-left px-4 py-3 bg-green-50 hover:bg-green-100 rounded-lg transition-colors"
-            >
-              <div className="flex items-center">
-                <Plus className="h-5 w-5 text-green-600 mr-3" />
-                <div>
-                  <div className="font-medium text-green-900">Submit Feedback</div>
-                  <div className="text-sm text-green-700">Share your ideas and suggestions</div>
-                </div>
-              </div>
-            </button>
-
-            <button
-              onClick={() => handleQuickAction('analytics')}
-              className="w-full text-left px-4 py-3 bg-purple-50 hover:bg-purple-100 rounded-lg transition-colors"
-            >
-              <div className="flex items-center">
-                <BarChart3 className="h-5 w-5 text-purple-600 mr-3" />
-                <div>
-                  <div className="font-medium text-purple-900">View Analytics</div>
-                  <div className="text-sm text-purple-700">Check feedback trends and insights</div>
-                </div>
-              </div>
-            </button>
-          </div>
+        <div className="bg-white rounded-xl shadow border border-happyfox-orange p-4 flex flex-col gap-4">
+          <h3 className="text-lg font-semibold text-happyfox-orange mb-4">Quick Actions</h3>
+          <button
+            onClick={() => handleQuickAction('board')}
+            className="flex items-center gap-3 px-4 py-3 rounded-lg bg-happyfox-orange text-white font-semibold shadow hover:bg-happyfox-dark transition"
+          >
+            <Folder className="h-5 w-5" /> Go to Boards
+          </button>
+          <button
+            onClick={() => handleQuickAction('feedback')}
+            className="flex items-center gap-3 px-4 py-3 rounded-lg bg-happyfox-orange text-white font-semibold shadow hover:bg-happyfox-dark transition"
+          >
+            <MessageSquare className="h-5 w-5" /> View Feedback
+          </button>
+          <button
+            onClick={() => handleQuickAction('analytics')}
+            className="flex items-center gap-3 px-4 py-3 rounded-lg bg-happyfox-orange text-white font-semibold shadow hover:bg-happyfox-dark transition"
+          >
+            <BarChart3 className="h-5 w-5" /> View Analytics
+          </button>
         </div>
       </div>
     </div>

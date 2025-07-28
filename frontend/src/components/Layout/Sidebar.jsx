@@ -18,9 +18,9 @@ const Sidebar = () => {
   ];
 
   return (
-    <aside className="w-64 bg-white shadow-sm border-r border-gray-200 min-h-screen">
-      <nav className="mt-8">
-        <div className="px-4">
+    <aside className="hidden sm:block w-56 bg-happyfox-light shadow-sm border-r border-happyfox-dark min-h-screen pt-4">
+      <nav>
+        <div className="px-2">
           {navItems.map(({ to, icon: Icon, label }) => (
             <NavLink
               key={to}
@@ -28,8 +28,8 @@ const Sidebar = () => {
               className={({ isActive }) =>
                 `flex items-center px-4 py-3 text-sm font-medium rounded-lg mb-1 transition-colors ${
                   isActive
-                    ? 'bg-blue-50 text-blue-700 border-r-2 border-blue-700'
-                    : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+                    ? 'bg-happyfox-orange text-white border-r-4 border-happyfox-dark shadow-md'
+                    : 'text-happyfox-dark hover:bg-happyfox-orange/20 hover:text-happyfox-orange'
                 }`
               }
             >

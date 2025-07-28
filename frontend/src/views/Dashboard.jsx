@@ -172,16 +172,16 @@ const Dashboard = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-          <p className="text-gray-600 mt-1">Analytics and insights for your feedback</p>
+          <h1 className="text-2xl font-bold text-happyfox-orange">Dashboard</h1>
+          <p className="text-happyfox-dark mt-1">Analytics and insights for your feedback</p>
         </div>
 
         <select
           value={dateRange}
           onChange={(e) => setDateRange(Number(e.target.value))}
-          className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+          className="px-3 py-2 border border-happyfox-orange rounded-md focus:outline-none focus:ring-2 focus:ring-happyfox-orange focus:border-happyfox-orange bg-happyfox-light"
         >
           <option value={7}>Last 7 days</option>
           <option value={30}>Last 30 days</option>
@@ -190,38 +190,36 @@ const Dashboard = () => {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map(({ icon: Icon, label, value, color }) => (
           <div
             key={label}
-            className="bg-white rounded-lg shadow-sm border border-gray-200 p-6"
+            className="bg-happyfox-light rounded-xl shadow border border-happyfox-orange p-4 flex items-center gap-4 transition hover:scale-105 hover:shadow-lg"
           >
-            <div className="flex items-center">
-              <div className={`p-2 rounded-lg bg-${color}-100`}>
-                <Icon className={`h-6 w-6 text-${color}-600`} />
-              </div>
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-600">{label}</p>
-                <p className="text-2xl font-semibold text-gray-900">{value}</p>
-              </div>
+            <div className="p-2 rounded-lg bg-happyfox-orange/20">
+              <Icon className="h-6 w-6 text-happyfox-orange" />
+            </div>
+            <div>
+              <p className="text-xs font-medium text-happyfox-dark">{label}</p>
+              <p className="text-xl font-bold text-happyfox-orange">{value}</p>
             </div>
           </div>
         ))}
       </div>
 
       {/* Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Trend Chart */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h3 className="text-lg font-medium text-gray-900 mb-4">
+        <div className="bg-white rounded-xl shadow border border-happyfox-orange p-4">
+          <h3 className="text-lg font-semibold text-happyfox-orange mb-4">
             Feedback Submission Trends
           </h3>
           <Line data={trendData} options={chartOptions} />
         </div>
 
         {/* Status Distribution */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h3 className="text-lg font-medium text-gray-900 mb-4">
+        <div className="bg-white rounded-xl shadow border border-happyfox-orange p-4">
+          <h3 className="text-lg font-semibold text-happyfox-orange mb-4">
             Status Distribution
           </h3>
           <Pie data={statusData} options={pieOptions} />
@@ -229,8 +227,8 @@ const Dashboard = () => {
       </div>
 
       {/* Tag Distribution */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h3 className="text-lg font-medium text-gray-900 mb-4">
+      <div className="bg-white rounded-xl shadow border border-happyfox-orange p-4">
+        <h3 className="text-lg font-semibold text-happyfox-orange mb-4">
           Popular Tags
         </h3>
         <Bar data={tagData} options={chartOptions} />

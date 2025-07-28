@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
 import Layout from './components/Layout/Layout';
@@ -11,8 +11,31 @@ import KanbanView from './views/KanbanView';
 import Dashboard from './views/Dashboard';
 import Loading from './components/Common/Loading';
 
+function SplashScreen() {
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen bg-happyfox-orange">
+      <img
+        src="/happyfox-logo.png"
+        alt="HappyFox Logo"
+        className="w-32 h-32 animate-bounce mb-4 drop-shadow-lg"
+      />
+      <h1 className="text-3xl font-bold text-white tracking-wide animate-fade-in">Welcome to HappyFox Feedback</h1>
+    </div>
+  );
+}
+
 function App() {
   const { user, loading } = useAuth();
+  const [showSplash, setShowSplash] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowSplash(false), 1800);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (showSplash) {
+    return <SplashScreen />;
+  }
 
   if (loading) {
     return <Loading />;

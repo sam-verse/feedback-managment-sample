@@ -11,7 +11,7 @@ const KanbanView = () => {
   const [dragOverColumn, setDragOverColumn] = useState(null);
 
   const columns = [
-    { id: 'open', title: 'Open', color: 'blue' },
+    { id: 'open', title: 'Open', color: 'orange' },
     { id: 'in_progress', title: 'In Progress', color: 'yellow' },
     { id: 'completed', title: 'Completed', color: 'green' },
     { id: 'rejected', title: 'Rejected', color: 'red' },
@@ -89,23 +89,32 @@ const KanbanView = () => {
   };
 
   const getColumnColor = (color) => {
-    const colors = {
-      blue: 'border-blue-200 bg-blue-50',
-      yellow: 'border-yellow-200 bg-yellow-50',
-      green: 'border-green-200 bg-green-50',
-      red: 'border-red-200 bg-red-50',
-    };
-    return colors[color] || 'border-gray-200 bg-gray-50';
+    switch (color) {
+      case 'orange':
+        return 'bg-happyfox-light border-happyfox-orange';
+      case 'yellow':
+        return 'bg-yellow-50 border-yellow-400';
+      case 'green':
+        return 'bg-green-50 border-green-400';
+      case 'red':
+        return 'bg-red-50 border-red-400';
+      default:
+        return 'bg-happyfox-light border-happyfox-orange';
+    }
   };
-
   const getHeaderColor = (color) => {
-    const colors = {
-      blue: 'text-blue-700 bg-blue-100',
-      yellow: 'text-yellow-700 bg-yellow-100',
-      green: 'text-green-700 bg-green-100',
-      red: 'text-red-700 bg-red-100',
-    };
-    return colors[color] || 'text-gray-700 bg-gray-100';
+    switch (color) {
+      case 'orange':
+        return 'bg-happyfox-orange text-white';
+      case 'yellow':
+        return 'bg-yellow-400 text-white';
+      case 'green':
+        return 'bg-green-400 text-white';
+      case 'red':
+        return 'bg-red-400 text-white';
+      default:
+        return 'bg-happyfox-orange text-white';
+    }
   };
 
   if (loading) return <Loading />;
@@ -113,11 +122,11 @@ const KanbanView = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">Kanban Board</h1>
-        <p className="text-gray-600 mt-1">Drag and drop feedback to update their status</p>
+        <h1 className="text-2xl font-bold text-happyfox-orange">Kanban Board</h1>
+        <p className="text-happyfox-dark mt-1">Drag and drop feedback to update their status</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {columns.map((column) => {
           const columnFeedback = feedback.filter(item => item.status === column.id);
           const isDragOver = dragOverColumn === column.id;
@@ -125,7 +134,7 @@ const KanbanView = () => {
           return (
             <div
               key={column.id}
-              className={`rounded-lg border-2 transition-all duration-200 ${getColumnColor(column.color)} ${
+              className={`rounded-xl border-2 transition-all duration-200 ${getColumnColor(column.color)} ${
                 isDragOver ? 'border-dashed border-4 bg-opacity-75 scale-105' : ''
               }`}
               onDragOver={handleDragOver}
@@ -133,32 +142,32 @@ const KanbanView = () => {
               onDragLeave={handleDragLeave}
               onDrop={(e) => handleDrop(e, column.id)}
             >
-              <div className={`px-4 py-3 rounded-t-lg ${getHeaderColor(column.color)}`}>
+              <div className={`px-4 py-3 rounded-t-xl ${getHeaderColor(column.color)}`}>
                 <h3 className="font-medium">
                   {column.title}
                   <span className="ml-2 text-sm">({columnFeedback.length})</span>
                 </h3>
               </div>
 
-              <div className={`p-4 min-h-[500px] ${isDragOver ? 'bg-opacity-50' : ''}`}>
+              <div className={`p-4 min-h-[300px] ${isDragOver ? 'bg-opacity-50' : ''}`}> {/* reduced min height for mobile */}
                 {columnFeedback.map((item) => (
                   <div
                     key={item.id}
                     draggable
                     onDragStart={(e) => handleDragStart(e, item)}
                     onDragEnd={handleDragEnd}
-                    className={`bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-4 cursor-move transition-all duration-200 hover:shadow-md group ${
+                    className={`bg-white rounded-xl shadow border border-happyfox-orange p-4 mb-4 cursor-move transition-all duration-200 hover:shadow-lg group ${
                       draggedItem?.id === item.id ? 'opacity-50 rotate-2 scale-105' : ''
                     }`}
                   >
                     <div className="flex items-start justify-between mb-2">
-                      <h4 className="font-medium text-gray-900 mb-2 line-clamp-2 flex-1">
+                      <h4 className="font-bold text-happyfox-orange mb-2 line-clamp-2 flex-1">
                         {item.title}
                       </h4>
-                      <GripVertical className="h-4 w-4 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity ml-2 flex-shrink-0" />
+                      <GripVertical className="h-4 w-4 text-happyfox-dark opacity-0 group-hover:opacity-100 transition-opacity ml-2 flex-shrink-0" />
                     </div>
 
-                    <p className="text-sm text-gray-600 mb-3 line-clamp-3">
+                    <p className="text-sm text-happyfox-dark mb-3 line-clamp-3">
                       {item.description}
                     </p>
 
@@ -167,61 +176,22 @@ const KanbanView = () => {
                         {item.tags_list.slice(0, 2).map((tag, tagIndex) => (
                           <span
                             key={tagIndex}
-                            className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full"
+                            className="px-2 py-1 bg-happyfox-light text-happyfox-dark text-xs rounded-full border border-happyfox-orange"
                           >
                             {tag}
                           </span>
                         ))}
                         {item.tags_list.length > 2 && (
-                          <span className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
+                          <span className="px-2 py-1 bg-happyfox-light text-happyfox-dark text-xs rounded-full border border-happyfox-orange">
                             +{item.tags_list.length - 2}
                           </span>
                         )}
                       </div>
                     )}
-
-                    <div className="flex items-center justify-between text-xs text-gray-500">
-                      <div className="flex items-center space-x-2">
-                        <div className="flex items-center">
-                          <Heart className="h-3 w-3 mr-1" />
-                          {item.upvote_count}
-                        </div>
-                        <div className="flex items-center">
-                          <MessageCircle className="h-3 w-3 mr-1" />
-                          {item.comment_count}
-                        </div>
-                      </div>
-
-                      <div className="flex items-center">
-                        <User className="h-3 w-3 mr-1" />
-                        {item.created_by?.username}
-                      </div>
-                    </div>
-
-                    <div className="flex items-center justify-between mt-2 pt-2 border-t border-gray-100">
-                      <span className="text-xs text-gray-500">
-                        {item.board?.name}
-                      </span>
-                      <span className="text-xs text-gray-500">
-                        {new Date(item.created_at).toLocaleDateString()}
-                      </span>
-                    </div>
                   </div>
                 ))}
-
-                {columnFeedback.length === 0 && (
-                  <div className="text-center py-8 text-gray-400">
-                    <div className="text-sm">No feedback in {column.title.toLowerCase()}</div>
-                    {isDragOver && (
-                      <div className="mt-2 text-blue-500 font-medium">
-                        Drop here to move feedback
-                      </div>
-                    )}
-                  </div>
-                )}
-
                 {isDragOver && columnFeedback.length > 0 && (
-                  <div className="border-2 border-dashed border-blue-400 rounded-lg p-4 text-center text-blue-600 bg-blue-50">
+                  <div className="border-2 border-dashed border-happyfox-orange rounded-xl p-4 text-center text-happyfox-orange bg-happyfox-light">
                     Drop here to move feedback
                   </div>
                 )}
@@ -233,7 +203,7 @@ const KanbanView = () => {
 
       {/* Visual feedback when dragging */}
       {draggedItem && (
-        <div className="fixed top-4 right-4 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg z-50 pointer-events-none">
+        <div className="fixed top-4 right-4 bg-happyfox-orange text-white px-4 py-2 rounded-lg shadow-lg z-50 pointer-events-none">
           Moving: {draggedItem.title.substring(0, 30)}...
         </div>
       )}
