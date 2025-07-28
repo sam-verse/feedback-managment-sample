@@ -1,7 +1,7 @@
 import api from '../utils/api';
-
 export const feedbackAPI = {
-  list: (params = {}) => api.get('/feedback/', { params }),
+  list: (params = {}
+) => api.get('/feedback/', { params }),
   create: (data) => api.post('/feedback/', data),
   retrieve: (id) => api.get(`/feedback/${id}/`),
   update: (id, data) => api.patch(`/feedback/${id}/`, data),

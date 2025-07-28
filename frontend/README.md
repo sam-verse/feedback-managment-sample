@@ -54,7 +54,7 @@ The Feedback Management System is designed to bridge the gap between customers a
 - **Framework**: Django 4.2.23 + Django REST Framework 3.16.0
 - **Authentication**: JWT with Simple JWT 5.5.1
 - **Database**: SQLite (development) / PostgreSQL (production ready)
-- **API Documentation**: drf-yasg (Swagger/OpenAPI)
+
 - **CORS**: django-cors-headers
 - **Testing**: pytest-django
 
@@ -184,11 +184,10 @@ npm run dev
 ### Access the Application
 - **Frontend**: http://localhost:5173
 - **Backend API**: http://localhost:8000/api/
-- **API Documentation**: http://localhost:8000/swagger/
 - **Admin Panel**: http://localhost:8000/admin/
 
 
-### Authentication
+### Authentication 
 - `POST /api/auth/register/` - User registration
 - `POST /api/auth/login/` - User login
 - `GET /api/auth/me/` - Get current user
