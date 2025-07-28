@@ -134,8 +134,8 @@ const KanbanView = () => {
           return (
             <div
               key={column.id}
-              className={`rounded-xl border-2 transition-all duration-200 ${getColumnColor(column.color)} ${
-                isDragOver ? 'border-dashed border-4 bg-opacity-75 scale-105' : ''
+              className={`rounded-xl border-2 transition-all duration-400 ease-smooth transform ${getColumnColor(column.color)} ${
+                isDragOver ? 'border-dashed border-4 bg-opacity-75 scale-105 shadow-lg' : ''
               }`}
               onDragOver={handleDragOver}
               onDragEnter={(e) => handleDragEnter(e, column.id)}
@@ -156,8 +156,8 @@ const KanbanView = () => {
                     draggable
                     onDragStart={(e) => handleDragStart(e, item)}
                     onDragEnd={handleDragEnd}
-                    className={`bg-white rounded-xl shadow border border-happyfox-orange p-4 mb-4 cursor-move transition-all duration-200 hover:shadow-lg group ${
-                      draggedItem?.id === item.id ? 'opacity-50 rotate-2 scale-105' : ''
+                    className={`bg-white rounded-xl shadow border border-happyfox-orange p-4 mb-4 cursor-move transition-all duration-400 ease-smooth hover:shadow-lg hover:scale-[1.02] group ${
+                      draggedItem?.id === item.id ? 'opacity-50 scale-105 shadow-xl' : ''
                     }`}
                   >
                     <div className="flex items-start justify-between mb-2">
@@ -191,7 +191,7 @@ const KanbanView = () => {
                   </div>
                 ))}
                 {isDragOver && columnFeedback.length > 0 && (
-                  <div className="border-2 border-dashed border-happyfox-orange rounded-xl p-4 text-center text-happyfox-orange bg-happyfox-light">
+                  <div className="border-2 border-dashed border-happyfox-orange rounded-xl p-4 text-center text-happyfox-orange bg-happyfox-light transition-all duration-400 ease-smooth animate-fade-in transform hover:bg-happyfox-orange/10">
                     Drop here to move feedback
                   </div>
                 )}
@@ -203,7 +203,7 @@ const KanbanView = () => {
 
       {/* Visual feedback when dragging */}
       {draggedItem && (
-        <div className="fixed top-4 right-4 bg-happyfox-orange text-white px-4 py-2 rounded-lg shadow-lg z-50 pointer-events-none">
+        <div className="fixed top-4 right-4 bg-happyfox-orange text-white px-4 py-2 rounded-lg shadow-lg z-50 pointer-events-none animate-fade-in transition-all duration-400 ease-smooth transform">
           Moving: {draggedItem.title.substring(0, 30)}...
         </div>
       )}

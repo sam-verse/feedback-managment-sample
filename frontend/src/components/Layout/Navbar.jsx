@@ -10,7 +10,7 @@ const Navbar = () => {
       <div className="px-4 sm:px-6 py-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <img src="/happyfox-logo.png" alt="HappyFox Logo" className="w-8 h-8 mr-2 hidden sm:block" />
+            <img src="/happyfox-white-logo.png" alt="HappyFox Logo" className="w-8 h-8 mr-2 hidden sm:block" />
             <h1 className="text-lg sm:text-xl font-bold text-white tracking-wide">
               HappyFox Feedback
             </h1>
@@ -29,7 +29,7 @@ const Navbar = () => {
 
             <button
               onClick={logout}
-              className="flex items-center space-x-1 px-2 sm:px-3 py-2 text-xs sm:text-sm text-happyfox-dark hover:text-white hover:bg-happyfox-dark transition rounded-md"
+              className="flex items-center space-x-1 px-2 sm:px-3 py-2 text-xs sm:text-sm text-white bg-red-500 hover:bg-red-700 transition rounded-md"
             >
               <LogOut className="h-4 w-4" />
               <span className="hidden sm:inline">Logout</span>

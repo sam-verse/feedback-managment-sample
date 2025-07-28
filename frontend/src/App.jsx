@@ -13,13 +13,13 @@ import Loading from './components/Common/Loading';
 
 function SplashScreen() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-happyfox-orange">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-happyfox-light animate-fade-in">
       <img
         src="/happyfox-logo.png"
         alt="HappyFox Logo"
-        className="w-32 h-32 animate-bounce mb-4 drop-shadow-lg"
+        className="w-32 h-32 mb-4 drop-shadow-lg animate-fade-in"
       />
-      <h1 className="text-3xl font-bold text-white tracking-wide animate-fade-in">Welcome to HappyFox Feedback</h1>
+      <h1 className="text-3xl font-bold text-happyfox-orange tracking-wide animate-fade-in delay-200">Welcome to HappyFox Feedback</h1>
     </div>
   );
 }
