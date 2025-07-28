@@ -124,32 +124,11 @@ npm run preview
 npm run lint
 ```
 
-## API Access Points
+## Access Points
 
-- **Backend API**: http://localhost:8000/api/
-- **Swagger Documentation**: http://localhost:8000/swagger/
 - **Admin Panel**: http://localhost:8000/admin/
 - **Frontend Application**: http://localhost:5173/
 
-## Environment Setup
-
-### Backend Environment Variables (optional)
-
-Create a `.env` file in the Django project root:
-
-```env
-DEBUG=True
-SECRET_KEY=your-secret-key-here
-DATABASE_URL=sqlite:///db.sqlite3
-```
-
-### Frontend Environment Variables (optional)
-
-Create a `.env` file in the frontend root:
-
-```env
-VITE_API_URL=http://localhost:8000/api
-```
 
 ## Troubleshooting
 
@@ -160,8 +139,6 @@ VITE_API_URL=http://localhost:8000/api
 2. **Module not found**: Ensure virtual environment is activated and requirements are installed
 
 3. **Database errors**: Run `python manage.py migrate` to apply database migrations
-
-4. **CORS errors**: Ensure `django-cors-headers` is properly configured in settings.py
 
 ### Reset Database (if needed)
 
@@ -176,9 +153,6 @@ python manage.py createsuperuser
 1. **Start backend**: Activate venv → cd feedback_mgmt → python manage.py runserver
 2. **Start frontend**: cd frontend → npm run dev
 3. **Access application**: Open http://localhost:5173 in browser
-4. **API testing**: Use http://localhost:8000/swagger/ for API documentation
-
 ---
 
-**Happy coding! 🎯**
 

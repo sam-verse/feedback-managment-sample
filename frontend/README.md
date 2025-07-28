@@ -12,7 +12,6 @@ A comprehensive feedback management application built with Django REST Framework
 - [Architecture](#architecture)
 - [Unique Features](#unique-features)
 - [Installation](#installation)
-- [API Documentation](#api-documentation)
 - [Screenshots](#screenshots)
 - [Project Structure](#project-structure)
 - [Contributing](#contributing)
@@ -188,9 +187,6 @@ npm run dev
 - **API Documentation**: http://localhost:8000/swagger/
 - **Admin Panel**: http://localhost:8000/admin/
 
-## 📚 API Documentation
-
-The API is fully documented using Swagger/OpenAPI. Key endpoints include:
 
 ### Authentication
 - `POST /api/auth/register/` - User registration
@@ -297,14 +293,6 @@ def get_queryset(self):
     # ... (filtering logic)
 ```
 
-### Real-time Analytics
-```python
-@action(detail=False, methods=['get'])
-def summary(self, request):
-    # Generate comprehensive analytics
-    # Including trends, distributions, top-voted feedback
-    # ... (analytics logic)
-```
 
 ## 🤝 Contributing
 
@@ -314,9 +302,6 @@ def summary(self, request):
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
@@ -327,4 +312,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Built with ❤️ using Django + React for HappyFox Evaluation**
+**Built with ❤️ using React & Django for HappyFox Evaluation**
